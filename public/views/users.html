@@ -1,0 +1,20 @@
+<div ng-controller="UserListController">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <td>Name</td>
+        <td>Phone</td>
+        <td>Dept</td>
+        <td>Location</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="user in users">
+        <td><a href="#/users/{{user.id}}">{{user.name}}</a></td>
+        <td>{{user.phone}}</td>
+        <td>{{user.dept}}</td>
+        <td>{{user.loc}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
