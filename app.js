@@ -2,7 +2,8 @@ var express = require('express');
 var app = express();
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://admin:pass#123@ds049848.mongolab.com:49848/example');
+// check out mongolab.com to get a free mongo instance
+mongoose.connect('mongodb://<username>:<password>@<somehost>.com:<port>/dbname')
 var User = mongoose.model('User', { name: String, phone: String, dept: String, loc: String }, 'User');
 
 // create sample collection if not exists
