@@ -7,10 +7,18 @@ exports.list = function (req, res) {
    });
 };
     
-exports.user = function (req, res) {
-  User.find({_id:req.params.userId}, function(error, user) {
-    if(user) {
-      res.send(user[0]);
-    }
+exports.get = function (req, res) {
+  User.find({_id:req.params.userId}, function(error, users) {
+    user = users.length > 0 ? users[0] : {};
+    res.send(user);
    });
+};
+
+exports.update = function (req, res) {
+  console.log("update: " + req.body);
+  //new User(req.body).save();
+  res.status(200).send(req.body);
+};
+
+exports.delete = function (req, res) {
 };

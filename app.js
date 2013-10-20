@@ -3,13 +3,13 @@ var app = express();
 
 var mongoose = require('mongoose');
 // check out mongolab.com to get a free mongo instance
-mongoose.connect('mongodb://<username>:<password>@<somehost>.com:<port>/dbname')
+// mongoose.connect('mongodb://<username>:<password>@<somehost>.com:<port>/dbname');
+mongoose.connect('mongodb://admin:pass#123@ds049848.mongolab.com:49848/example');
 var User = mongoose.model('User', { name: String, phone: String, dept: String, loc: String }, 'User');
 
 // create sample collection if not exists
 mongoose.connection.once('open', function callback () {
   User.find(function(error, users) {
-    console.log(users.length);
     if(users.length == 0) {
       new User({name: "Tony", phone: "800-555-0000", dept: "ENG", loc: "E42"}).save();
       new User({name: "Nicole",phone: "800-555-1111",dept: "BUS",loc: "B24"}).save();
@@ -25,7 +25,10 @@ app.use(app.router);
 
 var user = require('./routes/user');
 app.get('/api/users', user.list);
-app.get('/api/users/:userId', user.user);
+app.get('/api/users/:userId', user.get);
+app.put('/api/users', user.update);
+app.post('/api/users', user.update);
+app.delete('/api/users/:userId', user.delete);
 
 // var note = require('./routes/note');
 // app.get('/api/notes', note.list);
