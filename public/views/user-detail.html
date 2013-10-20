@@ -1,4 +1,5 @@
 <div ng-controller="UserDetailController" class="user-detail">
+  <h1>Details for: {{user.name}}</h1>
   <form role="form">
     <div class="form-group">
       <label for="name">Name</label>
@@ -17,7 +18,8 @@
       <input type="text" class="form-control" id="loc" ng-model="user.loc">
     </div>
     <div class="form-group">
-      <button class="form-control btn btn-success" ng-click="update()">Update</button>
+      <button class="btn btn-success" ng-click="update()">Update</button>
+      <button class="btn btn-danger" ng-click="confirm()">Delete</button>
     </div>
   </form>
 </div>

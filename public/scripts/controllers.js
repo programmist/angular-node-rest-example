@@ -8,8 +8,16 @@ function UserDetailController($scope, $routeParams, User) {
   $scope.user = User.get({userId: $routeParams.userId});
   
   $scope.update = function() {
-    User.update($scope.user);
-  }
+    User.update({userId: $routeParams.userId},$scope.user);
+  };
+
+  $scope.confirm = function() {
+    User.update({userId: $routeParams.userId},$scope.user);
+  };
+
+  $scope.delete = function() {
+    User.update({userId: $routeParams.userId},$scope.user);
+  };
 }
 
 function NoteController($scope) {

@@ -8,16 +8,20 @@ exports.list = function (req, res) {
 };
     
 exports.get = function (req, res) {
-  User.find({_id:req.params.userId}, function(error, users) {
-    user = users.length > 0 ? users[0] : {};
+  User.findById(req.params.userId, function(error, user) {
     res.send(user);
    });
 };
 
 exports.update = function (req, res) {
-  console.log("update: " + req.body);
-  //new User(req.body).save();
-  res.status(200).send(req.body);
+  delete req.body._id;
+  User.findByIdAndUpdate(req.params.userId, req.body, function(error, data) {
+    if(error) {
+      console.log(error)
+      res.status(400).send(error);
+    }
+    res.status(200).send(data);
+  });
 };
 
 exports.delete = function (req, res) {

@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var lessMiddleware = require('less-middleware');
 
 var mongoose = require('mongoose');
 // check out mongolab.com to get a free mongo instance
@@ -18,15 +19,21 @@ mongoose.connection.once('open', function callback () {
   });
 });
 
-app.use(express.static(__dirname + '/public'));
-app.use(require('less-middleware')({ src: __dirname + '/public' }));
+app.configure(function(){
+  app.use(express.bodyParser());
+  app.use(app.router);
 
-app.use(app.router);
+  app.use(lessMiddleware({
+    src: __dirname + '/public',
+    compress: true
+  }));
+  app.use(express.static(__dirname + '/public'));
+});
 
 var user = require('./routes/user');
 app.get('/api/users', user.list);
 app.get('/api/users/:userId', user.get);
-app.put('/api/users', user.update);
+app.put('/api/users/:userId', user.update);
 app.post('/api/users', user.update);
 app.delete('/api/users/:userId', user.delete);
 
