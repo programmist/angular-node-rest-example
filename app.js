@@ -4,8 +4,7 @@ var lessMiddleware = require('less-middleware');
 
 var mongoose = require('mongoose');
 // check out mongolab.com to get a free mongo instance
-// mongoose.connect('mongodb://<username>:<password>@<somehost>.com:<port>/dbname');
-mongoose.connect('mongodb://admin:pass#123@ds049848.mongolab.com:49848/example');
+mongoose.connect('mongodb://<username>:<password>@<somehost>.com:<port>/dbname');
 var User = mongoose.model('User', { name: String, phone: String, dept: String, loc: String }, 'User');
 
 // create sample collection if not exists
@@ -19,7 +18,7 @@ mongoose.connection.once('open', function callback () {
   });
 });
 
-app.configure(function(){
+app.configure(function() {
   app.use(express.bodyParser());
   app.use(app.router);
 
@@ -34,7 +33,7 @@ var user = require('./routes/user');
 app.get('/api/users', user.list);
 app.get('/api/users/:userId', user.get);
 app.put('/api/users/:userId', user.update);
-app.post('/api/users', user.update);
+app.post('/api/users', user.add);
 app.delete('/api/users/:userId', user.delete);
 
 // var note = require('./routes/note');
