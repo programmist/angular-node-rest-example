@@ -28,28 +28,28 @@
           <h2 class="modal-title">Add User</h2>
         </div>
         <div class="modal-body">
-          <form role="form">
+          <form name="newUserForm" role="form">
             <div class="form-group">
               <label for="name">Name</label>
-              <input type="text" class="form-control" id="name" ng-model="newuser.name">
+              <input type="text" class="form-control" id="name" ng-model="newuser.name" required>
             </div>
             <div class="form-group">
               <label for="phone">Phone</label>
-              <input type="text" class="form-control" id="phone" ng-model="newuser.phone">
+              <input type="text" class="form-control" id="phone" ng-model="newuser.phone" required>
             </div>
             <div class="form-group">
               <label for="dept">Department</label>
-              <input type="text" class="form-control" id="dept" ng-model="newuser.dept">
+              <input type="text" class="form-control" id="dept" ng-model="newuser.dept" required>
             </div>
             <div class="form-group">
               <label for="loc">Location</label>
-              <input type="text" class="form-control" id="loc" ng-model="newuser.loc">
+              <input type="text" class="form-control" id="loc" ng-model="newuser.loc" required>
             </div>
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button class="btn btn-success" ng-click="add(newuser)">Update</button>
+          <button class="btn btn-success" ng-click="add(newuser)" ng-disabled="newUserForm.$invalid">Update</button>
         </div>
       </div>
     </div>

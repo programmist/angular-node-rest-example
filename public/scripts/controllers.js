@@ -27,20 +27,16 @@ function UserListController($scope, User) {
 }
 
 function UserDetailController($scope, $routeParams, $location, User) {
+  window.scope = $scope;
+
   $scope.user = User.get({userId: $routeParams.userId});
 
   $scope.update = function() {
     User.update({userId: $routeParams.userId},$scope.user,
       function(success) {
-        $scope.message = {
-          text: 'User successfully updated.',
-          success: true
-        }
+        $scope.setMessage('User successfully updated.','success');
     },function(error) {
-        $scope.message = {
-          text: 'Problem updating user.',
-          success: false
-        };
+      $scope.setMessage('Problem updating user.','danger');
       console.log(error);
     });
   };
@@ -55,14 +51,18 @@ function UserDetailController($scope, $routeParams, $location, User) {
       function(success) {
         $location.path("/users");
       },function(error) {
-        $scope.message = {
-          text: 'Problem deleting user.',
-          success: false
-        };
+        $scope.setMessage('Problem deleting user.','danger');
         console.log(error);
       }
     );
   };
+
+  $scope.setMessage = function(text,type) {
+    $scope.message = {
+      text: text,
+      type: type
+    };
+  }
 }
 
 function NoteController($scope) {

@@ -1,29 +1,28 @@
 <div ng-controller="UserDetailController" class="user-detail">
   <h1>Details for: {{user.name}}</h1>
-  <div class="alert alert-dismissable fade in" ng-if="message" ng-class="{'alert-success': message.success, 'alert-danger': !message.success}">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <alert type="{{message.type}}" close="message=undefined">
     {{message.text}}
-  </div>
-  <form role="form">
+  </alert>
+  <form name="userForm" role="form">
     <div class="form-group">
       <label for="name">Name</label>
-      <input type="text" class="form-control" id="name" ng-model="user.name">
+      <input type="text" class="form-control" id="name" ng-model="user.name" required>
     </div>
     <div class="form-group">
       <label for="phone">Phone</label>
-      <input type="text" class="form-control" id="phone" ng-model="user.phone">
+      <input type="text" class="form-control" id="phone" ng-model="user.phone" required>
     </div>
     <div class="form-group">
       <label for="dept">Department</label>
-      <input type="text" class="form-control" id="dept" ng-model="user.dept">
+      <input type="text" class="form-control" id="dept" ng-model="user.dept" required>
     </div>
     <div class="form-group">
       <label for="loc">Location</label>
-      <input type="text" class="form-control" id="loc" ng-model="user.loc">
+      <input type="text" class="form-control" id="loc" ng-model="user.loc" required>
     </div>
     <div class="form-group">
       <a class="btn btn-default" href="#/users">Cancel</a>
-      <button class="btn btn-success" ng-click="update()">Update</button>
+      <button class="btn btn-success" ng-click="update()" ng-disabled="userForm.$invalid">Update</button>
       <button class="btn btn-danger" ng-click="confirm()">Delete</button>
     </div>
   </form>
