@@ -8,10 +8,9 @@ angular.module('myDirectives', []).
       restrict: 'EA',
       templateUrl: "views/alert.html",
       replace: true,
-      transclude : true,
       scope:{
-        type: "@",
-        close: "&"
+        message: '=message',
+        close: '&'
       },
       link: function(){
 

@@ -1,8 +1,6 @@
 <div ng-controller="UserDetailController" class="user-detail">
   <h1>Details for: {{user.name}}</h1>
-  <alert type="{{message.type}}" close="message=undefined">
-    {{message.text}}
-  </alert>
+  <alert message="message"></alert>
   <form name="userForm" role="form">
     <div class="form-group">
       <label for="name">Name</label>
