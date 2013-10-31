@@ -1,4 +1,4 @@
-<div class="alert" ng-class='message.type && "alert-" + message.type' ng-show="message">
-  <button type="button" class="close" aria-hidden="true" ng-click="close();message=undefined;">&times;</button>
-  {{message.text}}
+<div class="alert">
+  <button type="button" class="close" aria-hidden="true" ng-click="close()">&times;</button>
+  {{alert.message}}
 </div>

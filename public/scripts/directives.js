@@ -1,19 +1,22 @@
 'use strict';
 
-/* Services */
-
 angular.module('myDirectives', []).
-  directive('alert', function() {
+  directive('cwAlert', function() {
     return {
       restrict: 'EA',
       templateUrl: "views/alert.html",
       replace: true,
       scope:{
-        message: '=message',
-        close: '&'
+        alert: '=alert',
+        close: '&onClose'
       },
       link: function(){
-
+        scope.$watch('alert', function() {
+          if(scope.alert) {
+            element.removeClass();
+            element.addClass("alert alert-"+scope.alert.type);
+          }
+        });
       }
     };
   });

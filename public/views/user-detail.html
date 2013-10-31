@@ -1,6 +1,9 @@
 <div ng-controller="UserDetailController" class="user-detail">
   <h1>Details for: {{user.name}}</h1>
-  <alert message="message"></alert>
+  <div ng-repeat="alert in alerts">
+    <cw-alert alert="alert" on-close="alerts.splice($index,1)"></cw-alert>
+  </div>
+
   <form name="userForm" role="form">
     <div class="form-group">
       <label for="name">Name</label>
