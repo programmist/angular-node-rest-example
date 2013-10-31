@@ -10,7 +10,7 @@ angular.module('myDirectives', []).
         alert: '=alert',
         close: '&onClose'
       },
-      link: function(){
+      link: function(scope, element, attrs) {
         scope.$watch('alert', function() {
           if(scope.alert) {
             element.removeClass();
