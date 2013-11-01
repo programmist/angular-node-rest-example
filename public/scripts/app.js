@@ -7,6 +7,14 @@ angular.module('myApp', []).
       scope:{
         alert: '=alert',
         close: '&onClose'
+      },
+      link: function(scope, element, attrs) {
+        scope.$watch('alert', function() {
+          if(scope.alert) {
+            element.removeClass();
+            element.addClass("alert alert-"+scope.alert.type);
+          }
+        });
       }
     };
   });
@@ -14,9 +22,9 @@ angular.module('myApp', []).
 function MyController($scope, $timeout) {
   $timeout(function() {
     $scope.alerts = [
-      "Good morning Dave.",
-      "I love the smell of napalm in the morning.",
-      "PC Load Letter"
+      {message: "Good morning Dave.", type: "success"},
+      {message: "I love the smell of napalm in the morning.", type: "info"},
+      {message: "PC Load Letter", type: "danger"}
     ];
   }, 500);
 }
