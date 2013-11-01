@@ -9,10 +9,7 @@
 <body>
 
 <div class="container" ng-controller="MyController">
-  <div class="alert alert-success" ng-repeat="alert in alerts">
-    <button class="close" ng-click="alerts.splice($index,1);">&times;</button>
-    {{alert}}
-  </div>
+  <ap-alert  ng-repeat="alert in alerts"></ap-alert>
 </div>
 
 <script src="scripts/lib/jquery-2.0.3.js"></script>

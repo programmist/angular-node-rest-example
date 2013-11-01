@@ -1,4 +1,11 @@
-angular.module('myApp', []);
+angular.module('myApp', []).
+  directive('apAlert', function() {
+    return {
+      templateUrl: "views/alert.html",
+      restrict: 'EA',
+      replace: true
+    };
+  });
 
 function MyController($scope, $timeout) {
   $timeout(function() {
