@@ -1,2 +1,2 @@
-.container{width:55%}.container h1{text-align:center}
+.container{width:55%;padding:20px}.container h1{text-align:center}
 .container form input.ng-invalid.ng-dirty{border-color:#e9322d;-webkit-box-shadow:0 0 6px #f8b9b7;-moz-box-shadow:0 0 6px #f8b9b7;box-shadow:0 0 6px #f8b9b7}
