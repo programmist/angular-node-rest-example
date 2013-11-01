@@ -3,7 +3,11 @@ angular.module('myApp', []).
     return {
       templateUrl: "views/alert.html",
       restrict: 'EA',
-      replace: true
+      replace: true,
+      scope:{
+        alert: '=alert',
+        close: '&onClose'
+      }
     };
   });
 
