@@ -13,8 +13,12 @@ angular.module('myDirectives', []).
       link: function(scope, element, attrs) {
         scope.$watch('alert', function() {
           if(scope.alert) {
-            element.removeClass();
-            element.addClass("alert alert-"+scope.alert.type);
+            $.each(element[0].className.split(" "), function( index, value ) {
+              if(value.indexOf('alert-') >= 0) {
+                element.removeClass(value);
+              }
+            });
+            element.addClass("alert-"+scope.alert.type);
           }
         });
       }

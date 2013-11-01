@@ -1,5 +1,5 @@
 // Declare app level module which depends on filters, and services
-angular.module('myApp', ['ngRoute', 'myServices', 'myDirectives']).
+angular.module('myApp', ['ngRoute', 'ngAnimate', 'myServices', 'myDirectives']).
   config(['$routeProvider', function($routeProvider) {
     $routeProvider
     .when('/users', {templateUrl: 'views/users.html', controller: UserListController})
