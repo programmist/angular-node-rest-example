@@ -4,8 +4,8 @@ var lessMiddleware = require('less-middleware');
 
 var mongoose = require('mongoose');
 // check out mongolab.com to get a free mongo instance
-// mongoose.connect('mongodb://<username>:<password>@<somehost>.com:<port>/dbname');
-mongoose.connect(process.env.MONGO_CONNECTION_URL);
+mongoose.connect('mongodb://admin:password@ds049848.mongolab.com:49848/example');
+// mongoose.connect(process.env.MONGO_CONNECTION_URL);
 var User = mongoose.model('User', { name: String, phone: String, dept: String, loc: String }, 'User');
 
 // create sample collection if not exists

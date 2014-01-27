@@ -1,4 +1,5 @@
-<div class="alert">
-  <button type="button" class="close" aria-hidden="true" ng-click="close()">&times;</button>
+<div class="alert" ng-repeat="alert in messages">
+  <button type="button" class="close" aria-hidden="true" 
+          ng-click="close()">&times;</button>
   {{alert.message}}
 </div>

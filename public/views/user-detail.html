@@ -1,8 +1,9 @@
 <div ng-controller="UserDetailController" class="user-detail">
   <h1>Details for: {{user.name}}</h1>
   <div class="alerts">
-    <cw-alert alert="alert" on-close="alerts.splice($index,1)"
-              ng-repeat="alert in alerts" class="repeated-item">
+    <cw-alert on-close="alerts.splice($index,1)"
+              class="repeated-item"
+              name="{{msgQue}}">
     </cw-alert>
   </div>
 

@@ -15,7 +15,7 @@ function UserListController($scope, User) {
         newuser = undefined;
         $('#add-user-modal').modal('hide'); // create directive for modals
         $scope.getUsers();
-      },function(error) {
+      }, function(error) {
         $scope.alerts.push({
           text: 'Problem updating user.',
           success: false
@@ -28,19 +28,21 @@ function UserListController($scope, User) {
   $scope.getUsers();
 }
 
-function UserDetailController($scope, $routeParams, $location, User) {
+function UserDetailController($scope, $routeParams, $location, User, Messaging) {
   window.scope = $scope;
 
+  $scope.msgQue = 'userDetail';
   $scope.user = User.get({userId: $routeParams.userId});
   $scope.alerts = [];
 
   $scope.update = function() {
-    User.update({userId: $routeParams.userId},$scope.user,
-      function(success) {
-        $scope.addMessage('User successfully updated.','success');
-    },function(error) {
-      $scope.addMessage('Problem updating user.','danger');
-      console.log(error);
+    User.update({userId: $routeParams.userId},$scope.user, function(success) {
+      Messaging.success($scope.msgQue, 'User successfully updated.');
+      // $scope.addMessage('User successfully updated.','success');
+    }, function(error) {
+      Messaging.error($scope.msgQue, 'Problem updating user.');
+      // $scope.addMessage('Problem updating user.','danger');
+      // console.log(error);
     });
   };
 
@@ -53,14 +55,15 @@ function UserDetailController($scope, $routeParams, $location, User) {
     User.remove({userId: $routeParams.userId},
       function(success) {
         $location.path("/users");
-      },function(error) {
+      }, function(error) {
         $scope.addMessage('Problem deleting user.','danger');
         console.log(error);
       }
     );
   };
 
-  $scope.addMessage = function(text,type) {
+  $scope.addMessage = function(text, type) {
+    Messaging.addMessage('userDetail', text, type)
     $scope.alerts.push({
       message: text,
       type: type

@@ -1,26 +1,34 @@
 'use strict';
 
 angular.module('myDirectives', []).
-  directive('cwAlert', function() {
+  directive('cwAlert', ['Messaging', function(Messaging) {
     return {
       restrict: 'EA',
       templateUrl: "views/alert.html",
       replace: true,
       scope:{
-        alert: '=alert',
-        close: '&onClose'
+        alert: '=',
+        close: '&onClose',
+        name: '@'
       },
-      link: function(scope, element, attrs) {
-        scope.$watch('alert', function() {
-          if(scope.alert) {
+
+      link: {
+        pre: function(scope) {
+          Messaging.newQueue(scope.name);
+        },
+
+        post: function(scope, element, attrs) {
+          scope.$watch(Messaging.messages(scope.name), function() {
+            scope.messages = Messaging.messages(scope.name);
             $.each(element[0].className.split(" "), function( index, value ) {
               if(value.indexOf('alert-') >= 0) {
                 element.removeClass(value);
               }
             });
             element.addClass("alert-"+scope.alert.type);
-          }
-        });
+          });
+        }
       }
+
     };
-  });
+  }]);
